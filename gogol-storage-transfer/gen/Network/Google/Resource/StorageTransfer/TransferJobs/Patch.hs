@@ -24,7 +24,7 @@
 -- transfer operations that are running already. Updating the scheduling of
 -- a job is not allowed.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferJobs.patch@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferJobs.patch@.
 module Network.Google.Resource.StorageTransfer.TransferJobs.Patch
     (
     -- * REST Resource
@@ -46,15 +46,15 @@ module Network.Google.Resource.StorageTransfer.TransferJobs.Patch
     , tjpCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferJobs.patch@ method which the
 -- 'TransferJobsPatch' request conforms to.
 type TransferJobsPatchResource =
      "v1" :>
        Capture "jobName" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -71,15 +71,15 @@ type TransferJobsPatchResource =
 --
 -- /See:/ 'transferJobsPatch' smart constructor.
 data TransferJobsPatch = TransferJobsPatch'
-    { _tjpXgafv          :: !(Maybe Text)
+    { _tjpXgafv :: !(Maybe Xgafv)
     , _tjpUploadProtocol :: !(Maybe Text)
-    , _tjpPp             :: !Bool
-    , _tjpAccessToken    :: !(Maybe Text)
-    , _tjpJobName        :: !Text
-    , _tjpUploadType     :: !(Maybe Text)
-    , _tjpPayload        :: !UpdateTransferJobRequest
-    , _tjpBearerToken    :: !(Maybe Text)
-    , _tjpCallback       :: !(Maybe Text)
+    , _tjpPp :: !Bool
+    , _tjpAccessToken :: !(Maybe Text)
+    , _tjpJobName :: !Text
+    , _tjpUploadType :: !(Maybe Text)
+    , _tjpPayload :: !UpdateTransferJobRequest
+    , _tjpBearerToken :: !(Maybe Text)
+    , _tjpCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferJobsPatch' with the minimum fields required to make a request.
@@ -107,7 +107,7 @@ transferJobsPatch
     :: Text -- ^ 'tjpJobName'
     -> UpdateTransferJobRequest -- ^ 'tjpPayload'
     -> TransferJobsPatch
-transferJobsPatch pTjpJobName_ pTjpPayload_ =
+transferJobsPatch pTjpJobName_ pTjpPayload_ = 
     TransferJobsPatch'
     { _tjpXgafv = Nothing
     , _tjpUploadProtocol = Nothing
@@ -121,7 +121,7 @@ transferJobsPatch pTjpJobName_ pTjpPayload_ =
     }
 
 -- | V1 error format.
-tjpXgafv :: Lens' TransferJobsPatch (Maybe Text)
+tjpXgafv :: Lens' TransferJobsPatch (Maybe Xgafv)
 tjpXgafv = lens _tjpXgafv (\ s a -> s{_tjpXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

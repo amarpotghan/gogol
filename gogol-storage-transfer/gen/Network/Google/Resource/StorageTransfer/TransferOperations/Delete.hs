@@ -22,7 +22,7 @@
 --
 -- This method is not supported and the server returns \`UNIMPLEMENTED\`.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferOperations.delete@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferOperations.delete@.
 module Network.Google.Resource.StorageTransfer.TransferOperations.Delete
     (
     -- * REST Resource
@@ -43,15 +43,15 @@ module Network.Google.Resource.StorageTransfer.TransferOperations.Delete
     , todCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferOperations.delete@ method which the
 -- 'TransferOperationsDelete' request conforms to.
 type TransferOperationsDeleteResource =
      "v1" :>
        Capture "name" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -64,14 +64,14 @@ type TransferOperationsDeleteResource =
 --
 -- /See:/ 'transferOperationsDelete' smart constructor.
 data TransferOperationsDelete = TransferOperationsDelete'
-    { _todXgafv          :: !(Maybe Text)
+    { _todXgafv :: !(Maybe Xgafv)
     , _todUploadProtocol :: !(Maybe Text)
-    , _todPp             :: !Bool
-    , _todAccessToken    :: !(Maybe Text)
-    , _todUploadType     :: !(Maybe Text)
-    , _todBearerToken    :: !(Maybe Text)
-    , _todName           :: !Text
-    , _todCallback       :: !(Maybe Text)
+    , _todPp :: !Bool
+    , _todAccessToken :: !(Maybe Text)
+    , _todUploadType :: !(Maybe Text)
+    , _todBearerToken :: !(Maybe Text)
+    , _todName :: !Text
+    , _todCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferOperationsDelete' with the minimum fields required to make a request.
@@ -96,7 +96,7 @@ data TransferOperationsDelete = TransferOperationsDelete'
 transferOperationsDelete
     :: Text -- ^ 'todName'
     -> TransferOperationsDelete
-transferOperationsDelete pTodName_ =
+transferOperationsDelete pTodName_ = 
     TransferOperationsDelete'
     { _todXgafv = Nothing
     , _todUploadProtocol = Nothing
@@ -109,7 +109,7 @@ transferOperationsDelete pTodName_ =
     }
 
 -- | V1 error format.
-todXgafv :: Lens' TransferOperationsDelete (Maybe Text)
+todXgafv :: Lens' TransferOperationsDelete (Maybe Xgafv)
 todXgafv = lens _todXgafv (\ s a -> s{_todXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

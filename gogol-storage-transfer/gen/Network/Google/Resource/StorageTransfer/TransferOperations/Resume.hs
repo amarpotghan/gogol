@@ -22,7 +22,7 @@
 --
 -- Resumes a transfer operation that is paused.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferOperations.resume@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferOperations.resume@.
 module Network.Google.Resource.StorageTransfer.TransferOperations.Resume
     (
     -- * REST Resource
@@ -44,15 +44,15 @@ module Network.Google.Resource.StorageTransfer.TransferOperations.Resume
     , torCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferOperations.resume@ method which the
 -- 'TransferOperationsResume' request conforms to.
 type TransferOperationsResumeResource =
      "v1" :>
        CaptureMode "name" "resume" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -67,15 +67,15 @@ type TransferOperationsResumeResource =
 --
 -- /See:/ 'transferOperationsResume' smart constructor.
 data TransferOperationsResume = TransferOperationsResume'
-    { _torXgafv          :: !(Maybe Text)
+    { _torXgafv :: !(Maybe Xgafv)
     , _torUploadProtocol :: !(Maybe Text)
-    , _torPp             :: !Bool
-    , _torAccessToken    :: !(Maybe Text)
-    , _torUploadType     :: !(Maybe Text)
-    , _torPayload        :: !ResumeTransferOperationRequest
-    , _torBearerToken    :: !(Maybe Text)
-    , _torName           :: !Text
-    , _torCallback       :: !(Maybe Text)
+    , _torPp :: !Bool
+    , _torAccessToken :: !(Maybe Text)
+    , _torUploadType :: !(Maybe Text)
+    , _torPayload :: !ResumeTransferOperationRequest
+    , _torBearerToken :: !(Maybe Text)
+    , _torName :: !Text
+    , _torCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferOperationsResume' with the minimum fields required to make a request.
@@ -103,7 +103,7 @@ transferOperationsResume
     :: ResumeTransferOperationRequest -- ^ 'torPayload'
     -> Text -- ^ 'torName'
     -> TransferOperationsResume
-transferOperationsResume pTorPayload_ pTorName_ =
+transferOperationsResume pTorPayload_ pTorName_ = 
     TransferOperationsResume'
     { _torXgafv = Nothing
     , _torUploadProtocol = Nothing
@@ -117,7 +117,7 @@ transferOperationsResume pTorPayload_ pTorName_ =
     }
 
 -- | V1 error format.
-torXgafv :: Lens' TransferOperationsResume (Maybe Text)
+torXgafv :: Lens' TransferOperationsResume (Maybe Xgafv)
 torXgafv = lens _torXgafv (\ s a -> s{_torXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

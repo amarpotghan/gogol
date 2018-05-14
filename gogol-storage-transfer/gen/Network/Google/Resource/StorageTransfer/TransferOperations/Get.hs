@@ -24,7 +24,7 @@
 -- method to poll the operation result at intervals as recommended by the
 -- API service.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferOperations.get@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferOperations.get@.
 module Network.Google.Resource.StorageTransfer.TransferOperations.Get
     (
     -- * REST Resource
@@ -45,15 +45,15 @@ module Network.Google.Resource.StorageTransfer.TransferOperations.Get
     , togCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferOperations.get@ method which the
 -- 'TransferOperationsGet' request conforms to.
 type TransferOperationsGetResource =
      "v1" :>
        Capture "name" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -68,14 +68,14 @@ type TransferOperationsGetResource =
 --
 -- /See:/ 'transferOperationsGet' smart constructor.
 data TransferOperationsGet = TransferOperationsGet'
-    { _togXgafv          :: !(Maybe Text)
+    { _togXgafv :: !(Maybe Xgafv)
     , _togUploadProtocol :: !(Maybe Text)
-    , _togPp             :: !Bool
-    , _togAccessToken    :: !(Maybe Text)
-    , _togUploadType     :: !(Maybe Text)
-    , _togBearerToken    :: !(Maybe Text)
-    , _togName           :: !Text
-    , _togCallback       :: !(Maybe Text)
+    , _togPp :: !Bool
+    , _togAccessToken :: !(Maybe Text)
+    , _togUploadType :: !(Maybe Text)
+    , _togBearerToken :: !(Maybe Text)
+    , _togName :: !Text
+    , _togCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferOperationsGet' with the minimum fields required to make a request.
@@ -100,7 +100,7 @@ data TransferOperationsGet = TransferOperationsGet'
 transferOperationsGet
     :: Text -- ^ 'togName'
     -> TransferOperationsGet
-transferOperationsGet pTogName_ =
+transferOperationsGet pTogName_ = 
     TransferOperationsGet'
     { _togXgafv = Nothing
     , _togUploadProtocol = Nothing
@@ -113,7 +113,7 @@ transferOperationsGet pTogName_ =
     }
 
 -- | V1 error format.
-togXgafv :: Lens' TransferOperationsGet (Maybe Text)
+togXgafv :: Lens' TransferOperationsGet (Maybe Xgafv)
 togXgafv = lens _togXgafv (\ s a -> s{_togXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

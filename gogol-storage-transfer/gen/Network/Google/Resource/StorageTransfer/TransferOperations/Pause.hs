@@ -22,7 +22,7 @@
 --
 -- Pauses a transfer operation.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferOperations.pause@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferOperations.pause@.
 module Network.Google.Resource.StorageTransfer.TransferOperations.Pause
     (
     -- * REST Resource
@@ -44,15 +44,15 @@ module Network.Google.Resource.StorageTransfer.TransferOperations.Pause
     , topCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferOperations.pause@ method which the
 -- 'TransferOperationsPause' request conforms to.
 type TransferOperationsPauseResource =
      "v1" :>
        CaptureMode "name" "pause" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -67,15 +67,15 @@ type TransferOperationsPauseResource =
 --
 -- /See:/ 'transferOperationsPause' smart constructor.
 data TransferOperationsPause = TransferOperationsPause'
-    { _topXgafv          :: !(Maybe Text)
+    { _topXgafv :: !(Maybe Xgafv)
     , _topUploadProtocol :: !(Maybe Text)
-    , _topPp             :: !Bool
-    , _topAccessToken    :: !(Maybe Text)
-    , _topUploadType     :: !(Maybe Text)
-    , _topPayload        :: !PauseTransferOperationRequest
-    , _topBearerToken    :: !(Maybe Text)
-    , _topName           :: !Text
-    , _topCallback       :: !(Maybe Text)
+    , _topPp :: !Bool
+    , _topAccessToken :: !(Maybe Text)
+    , _topUploadType :: !(Maybe Text)
+    , _topPayload :: !PauseTransferOperationRequest
+    , _topBearerToken :: !(Maybe Text)
+    , _topName :: !Text
+    , _topCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferOperationsPause' with the minimum fields required to make a request.
@@ -103,7 +103,7 @@ transferOperationsPause
     :: PauseTransferOperationRequest -- ^ 'topPayload'
     -> Text -- ^ 'topName'
     -> TransferOperationsPause
-transferOperationsPause pTopPayload_ pTopName_ =
+transferOperationsPause pTopPayload_ pTopName_ = 
     TransferOperationsPause'
     { _topXgafv = Nothing
     , _topUploadProtocol = Nothing
@@ -117,7 +117,7 @@ transferOperationsPause pTopPayload_ pTopName_ =
     }
 
 -- | V1 error format.
-topXgafv :: Lens' TransferOperationsPause (Maybe Text)
+topXgafv :: Lens' TransferOperationsPause (Maybe Xgafv)
 topXgafv = lens _topXgafv (\ s a -> s{_topXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

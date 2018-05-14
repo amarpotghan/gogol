@@ -23,7 +23,7 @@
 -- Cancels a transfer. Use the get method to check whether the cancellation
 -- succeeded or whether the operation completed despite cancellation.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferOperations.cancel@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferOperations.cancel@.
 module Network.Google.Resource.StorageTransfer.TransferOperations.Cancel
     (
     -- * REST Resource
@@ -44,15 +44,15 @@ module Network.Google.Resource.StorageTransfer.TransferOperations.Cancel
     , tocCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferOperations.cancel@ method which the
 -- 'TransferOperationsCancel' request conforms to.
 type TransferOperationsCancelResource =
      "v1" :>
        CaptureMode "name" "cancel" Text :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -66,14 +66,14 @@ type TransferOperationsCancelResource =
 --
 -- /See:/ 'transferOperationsCancel' smart constructor.
 data TransferOperationsCancel = TransferOperationsCancel'
-    { _tocXgafv          :: !(Maybe Text)
+    { _tocXgafv :: !(Maybe Xgafv)
     , _tocUploadProtocol :: !(Maybe Text)
-    , _tocPp             :: !Bool
-    , _tocAccessToken    :: !(Maybe Text)
-    , _tocUploadType     :: !(Maybe Text)
-    , _tocBearerToken    :: !(Maybe Text)
-    , _tocName           :: !Text
-    , _tocCallback       :: !(Maybe Text)
+    , _tocPp :: !Bool
+    , _tocAccessToken :: !(Maybe Text)
+    , _tocUploadType :: !(Maybe Text)
+    , _tocBearerToken :: !(Maybe Text)
+    , _tocName :: !Text
+    , _tocCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferOperationsCancel' with the minimum fields required to make a request.
@@ -98,7 +98,7 @@ data TransferOperationsCancel = TransferOperationsCancel'
 transferOperationsCancel
     :: Text -- ^ 'tocName'
     -> TransferOperationsCancel
-transferOperationsCancel pTocName_ =
+transferOperationsCancel pTocName_ = 
     TransferOperationsCancel'
     { _tocXgafv = Nothing
     , _tocUploadProtocol = Nothing
@@ -111,7 +111,7 @@ transferOperationsCancel pTocName_ =
     }
 
 -- | V1 error format.
-tocXgafv :: Lens' TransferOperationsCancel (Maybe Text)
+tocXgafv :: Lens' TransferOperationsCancel (Maybe Xgafv)
 tocXgafv = lens _tocXgafv (\ s a -> s{_tocXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").

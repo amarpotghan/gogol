@@ -22,7 +22,7 @@
 --
 -- Creates a transfer job that runs periodically.
 --
--- /See:/ <https://cloud.google.com/storage/transfer Google Storage Transfer API Reference> for @storagetransfer.transferJobs.create@.
+-- /See:/ <https://cloud.google.com/storage/transfer Storage Transfer API Reference> for @storagetransfer.transferJobs.create@.
 module Network.Google.Resource.StorageTransfer.TransferJobs.Create
     (
     -- * REST Resource
@@ -43,15 +43,15 @@ module Network.Google.Resource.StorageTransfer.TransferJobs.Create
     , tjcCallback
     ) where
 
-import           Network.Google.Prelude
-import           Network.Google.StorageTransfer.Types
+import Network.Google.Prelude
+import Network.Google.StorageTransfer.Types
 
 -- | A resource alias for @storagetransfer.transferJobs.create@ method which the
 -- 'TransferJobsCreate' request conforms to.
 type TransferJobsCreateResource =
      "v1" :>
        "transferJobs" :>
-         QueryParam "$.xgafv" Text :>
+         QueryParam "$.xgafv" Xgafv :>
            QueryParam "upload_protocol" Text :>
              QueryParam "pp" Bool :>
                QueryParam "access_token" Text :>
@@ -66,14 +66,14 @@ type TransferJobsCreateResource =
 --
 -- /See:/ 'transferJobsCreate' smart constructor.
 data TransferJobsCreate = TransferJobsCreate'
-    { _tjcXgafv          :: !(Maybe Text)
+    { _tjcXgafv :: !(Maybe Xgafv)
     , _tjcUploadProtocol :: !(Maybe Text)
-    , _tjcPp             :: !Bool
-    , _tjcAccessToken    :: !(Maybe Text)
-    , _tjcUploadType     :: !(Maybe Text)
-    , _tjcPayload        :: !TransferJob
-    , _tjcBearerToken    :: !(Maybe Text)
-    , _tjcCallback       :: !(Maybe Text)
+    , _tjcPp :: !Bool
+    , _tjcAccessToken :: !(Maybe Text)
+    , _tjcUploadType :: !(Maybe Text)
+    , _tjcPayload :: !TransferJob
+    , _tjcBearerToken :: !(Maybe Text)
+    , _tjcCallback :: !(Maybe Text)
     } deriving (Eq,Show,Data,Typeable,Generic)
 
 -- | Creates a value of 'TransferJobsCreate' with the minimum fields required to make a request.
@@ -98,7 +98,7 @@ data TransferJobsCreate = TransferJobsCreate'
 transferJobsCreate
     :: TransferJob -- ^ 'tjcPayload'
     -> TransferJobsCreate
-transferJobsCreate pTjcPayload_ =
+transferJobsCreate pTjcPayload_ = 
     TransferJobsCreate'
     { _tjcXgafv = Nothing
     , _tjcUploadProtocol = Nothing
@@ -111,7 +111,7 @@ transferJobsCreate pTjcPayload_ =
     }
 
 -- | V1 error format.
-tjcXgafv :: Lens' TransferJobsCreate (Maybe Text)
+tjcXgafv :: Lens' TransferJobsCreate (Maybe Xgafv)
 tjcXgafv = lens _tjcXgafv (\ s a -> s{_tjcXgafv = a})
 
 -- | Upload protocol for media (e.g. \"raw\", \"multipart\").
