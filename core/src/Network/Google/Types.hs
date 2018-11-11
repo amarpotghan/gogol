@@ -1,4 +1,5 @@
 {-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE CPP                        #-}
 {-# LANGUAGE DeriveDataTypeable         #-}
 {-# LANGUAGE DeriveGeneric              #-}
 {-# LANGUAGE FlexibleInstances          #-}
@@ -31,6 +32,11 @@ import           Control.Monad.Catch
 import           Control.Monad.Trans.Resource
 import           Data.Aeson
 import           Data.ByteString              (ByteString)
+
+#if !MIN_VERSION_base(4,11,0)
+import           Data.Semigroup
+#endif
+
 import qualified Data.ByteString.Char8        as BS8
 import qualified Data.ByteString.Lazy         as LBS
 import qualified Data.CaseInsensitive         as CI
@@ -41,7 +47,13 @@ import           Data.Data
 import           Data.DList                   (DList)
 import qualified Data.DList                   as DList
 import           Data.Foldable                (foldMap, foldl')
+
+#if !MIN_VERSION_base(4,11,0)
+import           Data.Monoid                  hiding ((<>))
+#else
 import           Data.Monoid
+#endif
+
 import           Data.String
 import           Data.Text                    (Text)
 import qualified Data.Text.Encoding           as Text
